@@ -24,7 +24,7 @@ func (s *Server) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
 		image.Tag = "latest"
 	}
 	if q.Get("cache") != "" {
-		s.ds.Set(image, "")
+		s.ds.Clear(image)
 	}
 	digest, err := s.ds.Get(image)
 	if err != nil {

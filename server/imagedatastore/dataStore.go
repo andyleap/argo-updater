@@ -10,4 +10,5 @@ type Digest string
 type ImageDataStore interface {
 	Get(Image) (Digest, error)
 	Set(Image, Digest) error
+	Clear(Image) error
 }

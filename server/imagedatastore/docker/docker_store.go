@@ -23,11 +23,15 @@ func (ds *dockerStore) Get(image imagedatastore.Image) (imagedatastore.Digest, e
 	}
 	d, err := remote.Head(ref, ds.options...)
 	if err != nil {
-		return "", err
+		return "", nil
 	}
 	return imagedatastore.Digest(d.Digest.String()), nil
 }
 
 func (ds *dockerStore) Set(_ imagedatastore.Image, _ imagedatastore.Digest) error {
+	return nil
+}
+
+func (ds *dockerStore) Clear(_ imagedatastore.Image) error {
 	return nil
 }

@@ -27,8 +27,9 @@ func (rs *redisStore) Get(image imagedatastore.Image) (imagedatastore.Digest, er
 }
 
 func (rs *redisStore) Set(image imagedatastore.Image, digest imagedatastore.Digest) error {
-	if digest == "" {
-		return rs.client.Del(context.Background(), fmt.Sprintf("%s:%s", image.Image, image.Tag)).Err()
-	}
 	return rs.client.Set(context.Background(), fmt.Sprintf("%s:%s", image.Image, image.Tag), digest, rs.ttl).Err()
+}
+
+func (rs *redisStore) Clear(image imagedatastore.Image) error {
+	return rs.client.Del(context.Background(), fmt.Sprintf("%s:%s", image.Image, image.Tag)).Err()
 }

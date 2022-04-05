@@ -28,3 +28,8 @@ func (cs *cachingStore) Set(image imagedatastore.Image, digest imagedatastore.Di
 	cs.cache.Set(image, digest)
 	return cs.primary.Set(image, digest)
 }
+
+func (cs *cachingStore) Clear(image imagedatastore.Image) error {
+	cs.cache.Clear(image)
+	return cs.primary.Clear(image)
+}
